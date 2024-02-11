@@ -8,14 +8,15 @@ In this repository is the code to reproduce Figure 4-6 in the following manuscri
 >**Ma, X.**, Miraucourt, L., Qiu, H., Xu, M., Sharif, R., & Khadra, A. (2023). ElecFeX: A user-friendly toolkit for efficient feature extraction from single-cell electrophysiological recordings. bioRxiv, 2023-05.
 
 This code can also work with the excel outputs from [ElecFeX](https://github.com/XinyueMa-neuro/ElecFeX) to perform:
-1. [Electrical property's value visualization](#1-electrical-propertys-value-visualization)
-1.1 [Histogram plot](#11-histogram-plot)
-1.2 [Violin plot](#12-violin-plot)
-2. [Dimentional reduction by PCA](#2-dimentional-reduction-by-pca)
-3. [k-means cluster](#3-k-means-cluster)
-3.1 [Optimal cluster number](#31-optimal-cluster-number)
-3.2 [Perform and visualize the k-means cluster](#32-perform-and-visualize-the-k-means-cluster)
-3.3 [Compare clusters to their known identities](#33-compare-clusters-to-their-known-identities)
+
+1. [Electrical property's value visualization](#1-electrical-propertys-value-visualization) <br>
+   &ensp; 1.1 [Histogram plot](#11-histogram-plot) <br>
+   &ensp; 1.2 [Violin plot](#12-violin-plot) <br>
+2. [Dimentional reduction by PCA](#2-dimentional-reduction-by-pca) <br>
+3. [k-means cluster](#3-k-means-cluster) <br>
+  &ensp; 3.1 [Optimal cluster number](#31-optimal-cluster-number)  <br>
+  &ensp; 3.2 [Perform and visualize the k-means cluster](#32-perform-and-visualize-the-k-means-cluster)  <br>
+  &ensp; 3.3 [Compare clusters to their known identities](#33-compare-clusters-to-their-known-identities)  <br>
 
 Here, an example data file `20230723_210859_X4PS_SupraThresh_DA_0.xlsx` in the `code` folder is from the dataset Gouwen et al., 2020 ([link](https://dandiarchive.org/dandiset/000020/)). The information on this dataset, e.g., mouseline, is in the metafile `2021-09-13_mouse_file_ephys.xlsx` ([link](https://portal.brain-map.org/explore/classes/multimodal-characterization/multimodal-characterization-mouse-visual-cortex)).
 
@@ -49,8 +50,8 @@ Specify the `dataFolder` and `excelfn` and load the excel file in Matlab. In the
 dataFolder = '';
 excelfn = '20230723_210859_X4PS_SupraThresh_DA_0.xlsx'; % an example data in the code folder
 
-tb = readtable([dataFolder,excelfn],"ReadRowNames",true,'Sheet','Sheet1', 'ReadVariableNames',true); 
-tb_header = readtable([dataFolder,excelfn],"ReadRowNames",true,'Sheet','Sheet1', 'ReadVariableNames',false,'Range','1:1'); 
+tb = readtable([dataFolder,excelfn],"ReadRowNames",true,'Sheet','Sheet1','ReadVariableNames',true); 
+tb_header = readtable([dataFolder,excelfn],"ReadRowNames",true,'Sheet','Sheet1','ReadVariableNames',false,'Range','1:1'); 
 ```
 
 You can also load the identities of your datafiles if available. For instance, according to the metafile `2021-09-13_mouse_file_ephys.xlsx`, we loaded the data files from two reporter mouselines 'Pvalb-IRES-Cre;Ai14-' (number: 260) and 'Vip-IRES-Cre;Ai14-' (number: 225).
@@ -177,9 +178,9 @@ The function `getCluster()` is using the same method as mentioned above to find 
 
 :point_right: `demo_overlap.m`.
 
-If you have information on the identities of the observation (e.g., the reporter lines of the recordings), you can quantify how the cluster results overlap to the known identities of the observations. The putative identity of the cluster is first determined when their Jaccard similarity ($\frac{A \& B}{A|B}$) is maximal.
+If you have information on the identities of the observation (e.g., the reporter lines of the recordings), you can quantify how the cluster results overlap to the known identities of the observations. The putative identity of the cluster is first determined when their Jaccard similarity ($\frac{A \\& B}{A|B}$) is maximal.
 
-The overlap between the cluster and the known identity is then quantified by the true positive (TP), false positive (FP), true negative (TN), and false negative (FN), based on which we can get the sensitivity ($\frac{TP}{TP+FN}\%$), specificity ($\frac{TN}{TN+FP}\%$), and precision rate ($\frac{TP}{TP+FP}\%$) of the cluster result.
+The overlap between the cluster and the known identity is then quantified by the true positive (TP), false positive (FP), true negative (TN), and false negative (FN), based on which we can get the sensitivity ($\frac{TP}{TP+FN}\\%$), specificity ($\frac{TN}{TN+FP}\\%$), and precision rate ($\frac{TP}{TP+FP}\\%$) of the cluster result.
 
 <div align=center><img src="./figures/cluster_overlap.png" alt="violin" style="width:100%"></div>
 
