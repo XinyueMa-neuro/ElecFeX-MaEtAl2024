@@ -32,7 +32,12 @@ If you find the code helpful to your project, please cite it using this BibTeX e
   title = {ElecFeX-MaEtAl2024},
   author = {Xinyue Ma},
   note = {https://github.com/XinyueMa-neuro/ElecFeX-MaEtAl2024},
-  year = {2024},
+  month        = {feb},
+  year         = {2024},
+  publisher    = {Zenodo},
+  version      = {v1.0.0},
+  doi          = {10.5281/zenodo.10647932},
+  url          = {https://doi.org/10.5281/zenodo.10647932}
 }
 ```
 
